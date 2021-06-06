@@ -1,46 +1,32 @@
-<kendo-grid [kendoGridBinding]="gridView" kendoGridSelectBy="id" [selectedKeys]="mySelection" [sortable]="true"
-    [groupable]="true" [reorderable]="true" [resizable]="true" [height]="680"  [columnMenu]="{filter: true}"
-    (add)="addHandler($event)" (cancel)="cancelHandler($event)" (save)="saveHandler($event)">
+<kendo-grid [kendoGridBinding]="gridView"
+    [sortable]="true" [reorderable]="true" [resizable]="true" [height]="680" (add)="addHandler($event)"
+    (cancel)="cancelHandler($event)" (save)="saveHandler($event)" (edit)="editHandler($event)"
+    (remove)="removeHandler($event)">
 
     <ng-template kendoGridToolbarTemplate>
-        <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
-        <button kendoGridAddCommand type="button">Add new</button>
+        <button kendoGridAddCommand id="addButton" type="button">اضافه کردن</button>
     </ng-template>
 
-    <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
-        [resizable]="false" [columnMenu]="false" showSelectAll="true">
-    </kendo-grid-checkbox-column>
+    <kendo-grid-command-column  title="تغییرات" [style]="{'direction' : 'rtl', 'text-align': 'center'}">
+        <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand [primary]="true" class="editButton">ویرایش</button>
+            <button kendoGridRemoveCommand class="editButton">حذف</button>
+            <button kendoGridSaveCommand [disabled]="formGroup?.invalid!">{{ isNew ? 'اضافه کردن' : 'اعمال تغییرات'
+                }}</button>
+            <button kendoGridCancelCommand>{{ isNew ? 'لغو تغییرات' : 'لفو' }}</button>
+        </ng-template>
+    </kendo-grid-command-column>
 
-    <kendo-grid-column-group title="Users" [columnMenu]="false"
-        [headerStyle]="{'background-color': '#e1e1e1','color': '#656565','line-height': '2.5rem'}">
+    <kendo-grid-column  field="age" title="سن" [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    </kendo-grid-column>
 
-        <kendo-grid-column field="id" title="ID">
-        </kendo-grid-column>
+    <kendo-grid-column  field="lastName" title="نام خانوادگی"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    </kendo-grid-column>
 
+    <kendo-grid-column  field="firstName" title="نام"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    </kendo-grid-column>
 
-        <kendo-grid-column field="firstName" title="First Name">
-        </kendo-grid-column>
-
-
-        <kendo-grid-column field="lastName" title="Last Name">
-        </kendo-grid-column>
-
-
-        <kendo-grid-column field="age" title="Age">
-        </kendo-grid-column>
-
-        <kendo-grid-command-column title="command">
-            <ng-template kendoGridCellTemplate let-isNew="isNew">
-                <button kendoGridEditCommand [primary]="true">Edit</button>
-                <button kendoGridRemoveCommand>Remove</button>
-                <button kendoGridSaveCommand [disabled]="formGroup?.invalid!">{{ isNew ? 'Add' : 'Update' }}</button>
-                <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
-            </ng-template>
-        </kendo-grid-command-column>
-    </kendo-grid-column-group>
-
-
-    <kendo-grid-pdf fileName="Users.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
-    <kendo-grid-excel fileName="Users.xlsx"></kendo-grid-excel>
+    <kendo-grid-column  field="id" title="شناسه"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    </kendo-grid-column>
 
 </kendo-grid>

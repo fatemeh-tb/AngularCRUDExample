@@ -1,0 +1,13 @@
+#addButton {
+position: absolute;
+right: 20px;
+}
+
+
+.editButton {
+    width: 40%;
+}
+
+.test {
+    background-color: red;
+}

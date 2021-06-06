@@ -11,13 +11,9 @@ import { UserService } from '../Services/UserService.service'
   styleUrls: ['./grid-view.component.css']
 })
 export class GetUsersComponent implements OnInit {
-  @ViewChild(DataBindingDirective, { static: false }) dataBinding: DataBindingDirective;
+  users = [];
 
-  user = [];
-
-  public gridData: any[] = this.user;
   public gridView: any[];
-  public mySelection: string[] = [];
 
   public formGroup: FormGroup;
   private editedRowIndex: number;
@@ -25,38 +21,9 @@ export class GetUsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.gridView = this.gridData;
+    this.gridView = this.users;
 
     this.getData();
-  }
-
-  //Filtering Rows
-  public onFilter(inputValue: string): void {
-    this.gridView = process(this.gridData, {
-      filter: {
-        logic: "or",
-        filters: [
-          {
-            field: 'userId',
-            operator: (value) => (value + "").indexOf(inputValue) >= 0
-          },
-          {
-            field: 'id',
-            operator: (value) => (value + "").indexOf(inputValue) >= 0
-          },
-          {
-            field: 'body',
-            operator: (value) => (value + "").indexOf(inputValue) >= 0
-          },
-          {
-            field: 'title',
-            operator: (value) => (value + "").indexOf(inputValue) >= 0
-          },
-        ],
-      }
-    }).data;
-
-    this.dataBinding.skip = 0;
   }
 
 
@@ -67,29 +34,40 @@ export class GetUsersComponent implements OnInit {
     })
 
   }
-
   User(result: Object[]) {
     for (let i in result) {
 
-      this.user.push(result[i])
+      this.users.push(result[i])
     }
-    console.table(this.user);
+    console.table(this.users);
+  }
+
+
+  public editHandler({ sender, rowIndex, dataItem }) {
+    this.closeEditor(sender);
+
+    this.formGroup = new FormGroup({
+      'firstName': new FormControl(dataItem.firstName, Validators.required),
+      'lastName': new FormControl(dataItem.lastName, Validators.required),
+      'age': new FormControl(dataItem.age, Validators.required),
+    });
+
+    this.editedRowIndex = rowIndex;
+    sender.editRow(rowIndex, this.formGroup);
   }
 
 
   public addHandler({ sender }) {
     this.closeEditor(sender);
-
     this.formGroup = new FormGroup({
-      'id': new FormControl(0,
-        Validators.compose([Validators.required,
-        Validators.pattern('^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$')])),
+      'id': new FormControl(0),
       'firstName': new FormControl('', Validators.required),
       'lastName': new FormControl('', Validators.required),
-      'age': new FormControl(0,
+      'age': new FormControl('',
         Validators.compose([Validators.required,
         Validators.pattern('^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$')])),
     });
+    this.formGroup.removeControl('id');
     sender.addRow(this.formGroup);
   }
 
@@ -98,16 +76,21 @@ export class GetUsersComponent implements OnInit {
     this.closeEditor(sender, rowIndex);
   }
 
-  // Send Post Request To the Server
+
   saveHandler({ sender, rowIndex, formGroup }) {
     const data = formGroup.value;
     const newUser = new User(data.id, data.firstName, data.lastName, data.age);
-    this.userService.PostUsers(newUser).subscribe(data => {
-      console.log('User Created!')
-    })
+    this.userService.PostUsers(newUser).subscribe()
     this.closeEditor(sender, rowIndex);
     location.reload();
   }
+
+
+  public removeHandler({ dataItem }) {
+    this.userService.DeleteUsers(dataItem.id).subscribe();
+    location.reload();
+  }
+
 
   private closeEditor(grid, rowIndex = this.editedRowIndex) {
     grid.closeRow(rowIndex);

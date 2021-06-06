@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../Domains/user.component'
-import { IUserService } from './IUserService.service'
+
 
 @Injectable()
-export class UserService implements IUserService {
+export class UserService {
 
-    apiURL = 'http://localhost:5000/Employee';
+    baseUrl = 'http://localhost:5000/'
+
 
     constructor(private http: HttpClient) { }
 
@@ -18,10 +19,20 @@ export class UserService implements IUserService {
     }
 
     GetUsers(): Observable<any> {
-        return this.http.get('http://localhost:5000/all');
+        return this.http.get(this.baseUrl + 'all');
     }
 
     PostUsers(user: User): Observable<User> {
-        return this.http.post<User>(this.apiURL, user, this.httpOptions);
+        return this.http.post<User>(this.baseUrl + 'Employee', user, this.httpOptions);
     }
+
+    DeleteUsers(id): Observable<any> {
+        return this.http.delete(this.baseUrl + 'delete' + '/' + id)
+    }
+
+    UpdateUsers() {
+
+    }
+
+
 }
