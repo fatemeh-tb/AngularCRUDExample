@@ -1,32 +1,33 @@
-<kendo-grid [kendoGridBinding]="gridView"
-    [sortable]="true" [reorderable]="true" [resizable]="true" [height]="680" (add)="addHandler($event)"
-    (cancel)="cancelHandler($event)" (save)="saveHandler($event)" (edit)="editHandler($event)"
-    (remove)="removeHandler($event)">
+<kendo-grid [kendoGridBinding]="gridView" [sortable]="true" [reorderable]="true" [resizable]="true" [height]="680"
+    (add)="addHandler($event)" (edit)="editHandler($event)" (remove)="removeHandler($event)"
+    (save)="saveHandler($event)" (cancel)="cancelHandler($event)">
 
     <ng-template kendoGridToolbarTemplate>
         <button kendoGridAddCommand id="addButton" type="button">اضافه کردن</button>
     </ng-template>
 
-    <kendo-grid-command-column  title="تغییرات" [style]="{'direction' : 'rtl', 'text-align': 'center'}">
+    <kendo-grid-command-column title="" [style]="{'direction' : 'rtl'}">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
             <button kendoGridEditCommand [primary]="true" class="editButton">ویرایش</button>
             <button kendoGridRemoveCommand class="editButton">حذف</button>
-            <button kendoGridSaveCommand [disabled]="formGroup?.invalid!">{{ isNew ? 'اضافه کردن' : 'اعمال تغییرات'
+            <button kendoGridSaveCommand class="editButton" [disabled]="formGroup?.invalid!">{{ isNew ? 'اضافه کردن' : 'اعمال تغییرات'
                 }}</button>
-            <button kendoGridCancelCommand>{{ isNew ? 'لغو تغییرات' : 'لفو' }}</button>
+            <button kendoGridCancelCommand class="editButton">{{ isNew ? 'لغو' : 'لغو تغییرات' }}</button>
         </ng-template>
     </kendo-grid-command-column>
 
-    <kendo-grid-column  field="age" title="سن" [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    <kendo-grid-column field="age" title="سن" [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
     </kendo-grid-column>
 
-    <kendo-grid-column  field="lastName" title="نام خانوادگی"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    <kendo-grid-column field="lastName" title="نام خانوادگی" [style]="{'text-align': 'right'}"
+        [headerStyle]="{'direction' : 'rtl'}">
     </kendo-grid-column>
 
-    <kendo-grid-column  field="firstName" title="نام"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    <kendo-grid-column field="firstName" title="نام" [style]="{'text-align': 'right'}"
+        [headerStyle]="{'direction' : 'rtl'}">
     </kendo-grid-column>
 
-    <kendo-grid-column  field="id" title="شناسه"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
+    <kendo-grid-column field="id" title="شناسه"  [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
     </kendo-grid-column>
 
 </kendo-grid>

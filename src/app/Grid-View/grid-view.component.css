@@ -3,11 +3,46 @@ position: absolute;
 right: 20px;
 }
 
-
 .editButton {
     width: 40%;
 }
 
-.test {
-    background-color: red;
+@media screen and (max-width: 1000px) {
+    .editButton {
+        width: 70%;
+        display: block;
+        font-size: 14PX;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    .editButton {
+        width: 70%;
+        display: block;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .editButton {
+        width: 80%;
+        display: block;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .editButton {
+        width: 80%;
+        display: block;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .editButton {
+        width: 80%;
+        display: block;
+        font-size: 10px;
+     }
 }

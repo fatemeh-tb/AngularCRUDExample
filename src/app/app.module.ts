@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GetUsersComponent } from './Grid-View/grid-view.component';
 import {UserService} from './Services/UserService.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from '@progress/kendo-angular-dialog';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     GridModule,
+    DialogModule,
     PDFModule,
     ExcelModule,
     BrowserAnimationsModule

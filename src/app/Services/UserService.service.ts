@@ -3,12 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../Domains/user.component'
 
-
 @Injectable()
 export class UserService {
 
     baseUrl = 'http://localhost:5000/'
-
 
     constructor(private http: HttpClient) { }
 
@@ -26,13 +24,12 @@ export class UserService {
         return this.http.post<User>(this.baseUrl + 'Employee', user, this.httpOptions);
     }
 
-    DeleteUsers(id): Observable<any> {
+    DeleteUsers(id: number) {
         return this.http.delete(this.baseUrl + 'delete' + '/' + id)
     }
 
-    UpdateUsers() {
-
+    UpdateUsers(Data: object) {
+        return this.http.put(this.baseUrl + 'Employee', Data)
     }
-
 
 }
