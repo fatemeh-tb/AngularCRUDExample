@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: vazir;
-    src: url(assets/font/vazir-font-v28.0.0/Farsi-Digits-Without-Latin/Vazir-Regular-FD-WOL.ttf) format("opentype");
+    src: url(assets/font/vazir-font-v28.0.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.ttf) format("opentype");
   }
 
   * {

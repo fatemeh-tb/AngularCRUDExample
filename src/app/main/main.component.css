@@ -1,0 +1,16 @@
+.main {
+    text-align: center;
+    margin: 25px 130px 20px;
+    font-size: 1rem;
+}
+
+h2 {
+    padding: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ff5603;
+    width: 500px;
+    margin: -1px auto;
+}

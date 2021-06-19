@@ -1,0 +1,23 @@
+#add-btn {
+    position: absolute;
+    right: 20px;
+}
+
+#add-btn:hover {
+    color: #111;
+}
+
+.edit-btn {
+    width: 30%;
+    background-color: transparent;
+    color: #111;
+}
+
+.edit-btn:hover {
+    background-color: transparent;
+}
+
+.remove-btn {
+    width: 30%;
+    color: #e2483d;
+}
