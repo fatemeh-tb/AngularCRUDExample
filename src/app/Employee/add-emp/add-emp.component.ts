@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Employee } from 'src/app/Domains/employee.model';
 import { EmployeeService } from 'src/app/Services/employee.service';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-add-emp',
@@ -13,8 +12,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class AddEmpComponent implements OnInit {
-
-  dataSource = new MatTableDataSource<EmployeeService>();
 
   constructor(public dialogbox: MatDialogRef<AddEmpComponent>,
     public employeeService: EmployeeService,
@@ -34,8 +31,16 @@ export class AddEmpComponent implements OnInit {
       firstName: '',
       lastName: '',
       birthTime: null,
-      age: null,
+      image: null
     }
+  }
+
+
+  fileAttr = 'انتخاب تصویر:';
+  upload(files: any) {
+    this.employeeService.uploadFile(files).subscribe(res => {
+      console.log(res)
+    })
   }
 
 

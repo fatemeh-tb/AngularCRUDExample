@@ -1,41 +1,44 @@
-<kendo-grid [kendoGridBinding]="gridView" [sortable]="true" [reorderable]="true" [resizable]="true" [height]="680"
-    (add)="addHandler()" (edit)="editHandler($event)" (remove)="removeHandler($event)">
+<div class="container" style="overflow:auto;">
+    <div class="mat-elevation-z8">
 
-    <ng-template kendoGridToolbarTemplate>
-        <button kendoGridAddCommand mat-raised-button color="primary" type="button" id="add-btn">افزودن</button>
-    </ng-template>
+        <mat-table [dataSource]="listData" matSort style="padding: 20px;">
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+
+            <ng-container matColumnDef="Options">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row" id="option">
+                    <button mat-icon-button color="warn" (click)="removeHandler(row.id)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="editHandler(row)">
+                        <mat-icon>launch</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="birthTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>تاریخ تولد</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.birthTime | momentJalaali:'jYYYY/jMM/jDD' }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>نام خاتوادگی</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>نام</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.firstName}}</mat-cell>
+            </ng-container>
 
 
-    <kendo-grid-command-column title="" [style]="{'direction' : 'rtl'}">
-        <ng-template kendoGridCellTemplate let-isNew="isNew">
-            <button kendoGridEditCommand mat-icon-button [primary]="true" class="edit-btn">
-                <mat-icon class="edit-icon">launch</mat-icon>
-            </button>
-            <button kendoGridRemoveCommand mat-icon-button class="remove-btn">
-                <mat-icon class="edit-icon">delete_outline</mat-icon>
-            </button>
-        </ng-template>
-    </kendo-grid-command-column>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>شناسه</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+            </ng-container>
 
-    <kendo-grid-column field="birthTime" title="تاریخ تولد" [style]="{'text-align': 'right'}"
-        [headerStyle]="{'direction' : 'rtl'}">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            {{ dataItem.birthTime | date: 'yyyy/mm/dd' }}
-        </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="age" title="سن" [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
-    </kendo-grid-column>
-
-    <kendo-grid-column field="lastName" title="نام خانوادگی" [style]="{'text-align': 'right'}"
-        [headerStyle]="{'direction' : 'rtl'}">
-    </kendo-grid-column>
-
-    <kendo-grid-column field="firstName" title="نام" [style]="{'text-align': 'right'}"
-        [headerStyle]="{'direction' : 'rtl'}">
-    </kendo-grid-column>
-
-    <kendo-grid-column field="id" title="شناسه" [style]="{'text-align': 'right'}" [headerStyle]="{'direction' : 'rtl'}">
-    </kendo-grid-column>
-
-</kendo-grid>
+        </mat-table>
+    </div>
+    <button class="btn btn-danger" type="button" id="add-btn" (click)="addHandler()">افزودن</button>
+</div>

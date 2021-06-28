@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Employee } from 'src/app/Domains/employee.model';
 import { EmployeeService } from 'src/app/Services/employee.service';
+
 
 @Component({
   selector: 'app-edit-emp',
@@ -19,6 +20,14 @@ export class EditEmpComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+  }
+
+
+  fileAttr = 'انتخاب تصویر:';
+  upload(files: any) {
+    this.employeeService.uploadFile(files).subscribe(res => {
+      console.log(res)
+    })
   }
 
   onClose() {

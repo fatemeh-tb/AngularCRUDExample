@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { MomentJalaali } from './shared/jalaliMoment-pipe.pipe';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,6 +22,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 import { EmployeeComponent } from './Employee/employee.component'
@@ -29,8 +32,8 @@ import { EditEmpComponent } from './Employee/edit-emp/edit-emp.component';
 import { ShowEmpComponent } from './Employee/show-emp/show-emp.component';
 
 import { EmployeeService } from './Services/employee.service';
-import { MainComponent } from './main/main.component';
-
+import { MainComponent } from './main/mainContent/main.component';
+import { NotFoundComponent } from './main/notFound/notFound.component';
 
 
 @NgModule({
@@ -41,6 +44,8 @@ import { MainComponent } from './main/main.component';
     EditEmpComponent,
     ShowEmpComponent,
     MainComponent,
+    NotFoundComponent,
+    MomentJalaali,
   ],
   imports: [
     BrowserModule,
@@ -60,11 +65,13 @@ import { MainComponent } from './main/main.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatToolbarModule,
   ],
-  providers: [EmployeeService,
+  providers: [EmployeeService, MomentJalaali,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

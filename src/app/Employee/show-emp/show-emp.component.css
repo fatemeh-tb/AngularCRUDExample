@@ -1,23 +1,21 @@
 #add-btn {
-    position: absolute;
-    right: 20px;
+    margin-top: 20px;
 }
 
 #add-btn:hover {
-    color: #111;
+    color: #DC3545;
+    background-color: #fff;
 }
 
-.edit-btn {
-    width: 30%;
-    background-color: transparent;
-    color: #111;
+#option {
+    direction: ltr;
 }
 
-.edit-btn:hover {
-    background-color: transparent;
+mat-header-cell {
+    direction: rtl;
+    padding-right: 0 !important;
 }
 
-.remove-btn {
-    width: 30%;
-    color: #e2483d;
+mat-cell {
+    direction: rtl;
 }

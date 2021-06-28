@@ -1,11 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../../Domains/employee.model';
 import { EmployeeService } from '../../Services/employee.service'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddEmpComponent } from '../add-emp/add-emp.component';
 import { EditEmpComponent } from '../edit-emp/edit-emp.component';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 
@@ -15,41 +15,40 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./show-emp.component.css']
 })
 export class ShowEmpComponent implements OnInit {
- @ViewChild(MatTable) table: MatTable<any>;
 
-  employees: any[] = [];
+  displayedColumns: string[] = ['Options', 'birthTime',
+    'lastName', 'firstName', 'id',]
+  listData: MatTableDataSource<any>;
+  expandedElement: any;
 
-  public gridView: Employee[];
+  @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
 
   constructor(public employeeService: EmployeeService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.gridView = this.employees;
+    private dialog: MatDialog) {
     this.getData();
   }
 
+  ngOnInit(): void {
+    this.getData();
+  }
 
   getData() {
-    this.employeeService.getEmpList().subscribe(resp => {
-      this.User(resp);
+    this.employeeService.getEmpList().subscribe(data => {
+      this.listData = new MatTableDataSource(data);
+      this.listData.sort = this.sort;
     })
-  }
-  User(result: Object[]) {
-    for (let i in result) {
-      this.employees.push(result[i])
-    }
   }
 
 
   public addHandler() {
-    this.employees.length = 0
-
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
+
     this.dialog.open(AddEmpComponent, dialogConfig).afterClosed().subscribe(
       () => this.getData()
     )
@@ -57,11 +56,10 @@ export class ShowEmpComponent implements OnInit {
 
 
   public editHandler(emp: Employee) {
-    this.employees.length = 0
     this.employeeService.formData = emp;
 
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     this.dialog.open(EditEmpComponent, dialogConfig).afterClosed().subscribe(
@@ -70,11 +68,9 @@ export class ShowEmpComponent implements OnInit {
   }
 
 
-  public removeHandler({ dataItem }) {
-    this.employees.length = 0
-
+  public removeHandler(id: number) {
     if (confirm('مطمئنید میخواهید حدف کنید ؟')) {
-      this.employeeService.deleteEmployee(dataItem.id).subscribe(res => {
+      this.employeeService.deleteEmployee(id).subscribe(res => {
         this.getData()
         this.snackBar.open('', '! با موفقیت حذف شد ', {
           duration: 5000,

@@ -1,0 +1,12 @@
+.header {
+    font-size: 3rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 50px;
+}
+
+.main {
+    font-size: 2rem;
+    padding-top: 20px;
+    font-family: 'vazir', 'arial', sans-serif;
+    direction: rtl;
+}

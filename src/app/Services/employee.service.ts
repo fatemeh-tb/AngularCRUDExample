@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Domains/employee.model'
 
@@ -7,31 +7,47 @@ import { Employee } from '../Domains/employee.model'
 
 export class EmployeeService {
 
-    formData: Employee;
-    baseUrl = 'http://localhost:5000/'
+  formData: Employee;
+  baseUrl = 'http://localhost:5000/'
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+
+  public getEmpList(): Observable<any> {
+    return this.http.get(this.baseUrl + 'all')
+  }
+
+  addEmployee(user: Employee) {
+    return this.http.post<Employee>(this.baseUrl + 'Employee', user, this.httpOptions);
+  }
+
+  deleteEmployee(id: number) {
+    return this.http.delete(this.baseUrl + 'delete' + '/' + id);
+  }
+
+  updateEmployee(Data: object) {
+    return this.http.put(this.baseUrl + 'Employee', Data)
+  }
+
+  uploadFile(files: any[]): Observable<HttpResponse<Blob>> {
+    if (files.length === 0) {
+      return;
     }
 
-    public getEmpList(): Observable<any> {
-        return this.http.get(this.baseUrl + 'all')
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append(file.name, file);
     }
 
-    addEmployee(user: Employee): Observable<Employee> {
-        return this.http.post<Employee>(this.baseUrl + 'Employee', user, this.httpOptions);
-    }
-
-    deleteEmployee(id: number) {
-        return this.http.delete(this.baseUrl + 'delete' + '/' + id);
-    }
-
-    updateEmployee(Data: object) {
-        return this.http.put(this.baseUrl + 'Employee', Data)
-    }
+    return this.http.post(`${this.baseUrl}Employee`, formData, {
+      observe: "response",
+      responseType: "blob"
+    });
+  }
 
 }

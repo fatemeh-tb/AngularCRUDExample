@@ -5,5 +5,5 @@ export class Employee {
      public firstName: string;
      public lastName: string;
      public birthTime: moment.Moment;
-     public age: number;
+     public image: File;
 }

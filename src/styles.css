@@ -1,9 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face {
-    font-family: vazir;
-    src: url(assets/font/vazir-font-v28.0.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.ttf) format("opentype");
-  }
 
-  * {
-    font-family: 'vazir', 'arial', sans-serif;
-  }
+@font-face {
+  font-family: vazir;
+  src: url(assets/font/vazir-font-v28.0.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.ttf) format("opentype");
+}
+
+* {
+  font-family: 'vazir', 'arial', sans-serif;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 100px;
+}

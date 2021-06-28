@@ -1,11 +1,12 @@
 .main {
     text-align: center;
     margin: 25px 130px 20px;
-    font-size: 1rem;
+    font-size: 1vw;
 }
 
 h2 {
     padding: 20px;
+    font-family: 'vazir', 'arial', sans-serif;
 }
 
 hr {
