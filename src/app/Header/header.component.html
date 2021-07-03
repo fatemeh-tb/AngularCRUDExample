@@ -1,0 +1,59 @@
+<header>
+    <div id="top-bar">
+        <div class="container top-bar-inner col-12">
+            <div class="left-side">
+                <div class="login">
+                    <button routerLink="login" routerLinkActive="active" class="m-1 btn btn-primary"
+                        *ngIf="!isAuth">ورود /
+                        ثبت نام</button>
+
+                    <div class="dropdown">
+                        <button routerLinkActive="active" class="m-1 btn btn-primary dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            *ngIf="isAuth">
+                            پنل کاربری
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isAuth">
+                            <li><a class="dropdown-item">داشبورد</a></li>
+                            <li><a class="dropdown-item">پروفایل</a></li>
+                            <li><a class="dropdown-item" (click)="onLogout()">خروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="logo">
+                <a href="#">
+                    <div class="logo-content">
+                        <div class="brand">
+                            <img height="70" src="https://designsara.ir/wp-content/uploads/edd/2020/08/unnamed.png"
+                                alt="logo">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="nav-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12 header-nav">
+                    <nav>
+                        <ul>
+                            <li class="nav-btn">
+                                <button routerLink="home" routerLinkActive="active" class="m-1 btn float-end nav-btn">
+                                    صفحه اصلی
+                                </button>
+                            </li>
+                            <li class="nav-btn">
+                                <button routerLink="employee" routerLinkActive="active" class="m-1 btn  nav-btn">
+                                    لیست کارمندان
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

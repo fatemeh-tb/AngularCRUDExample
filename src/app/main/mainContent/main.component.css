@@ -1,7 +1,10 @@
 .main {
+    width: 100%;
     text-align: center;
-    margin: 25px 130px 20px;
-    font-size: 1vw;
+    padding: 15px 40px 30px 40px;
+    margin: 50px 0;
+    font-size: 17px;
+    line-height: 32px;
 }
 
 h2 {

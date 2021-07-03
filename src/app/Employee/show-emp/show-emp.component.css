@@ -19,3 +19,8 @@ mat-header-cell {
 mat-cell {
     direction: rtl;
 }
+
+.loadingIcon {
+    background-color: #fff;
+    text-align: center;
+}

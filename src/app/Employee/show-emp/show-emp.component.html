@@ -1,10 +1,10 @@
 <div class="container" style="overflow:auto;">
     <div class="mat-elevation-z8">
-
         <mat-table [dataSource]="listData" matSort style="padding: 20px;">
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
-
+            <ng-container *ngIf="!isLoading">
+                <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+            </ng-container>
             <ng-container matColumnDef="Options">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell *matCellDef="let row" id="option">
@@ -15,7 +15,7 @@
                         <mat-icon>launch</mat-icon>
                     </button>
                 </mat-cell>
-            </ng-container> -->
+            </ng-container>
 
             <ng-container matColumnDef="birthTime">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>تاریخ تولد</mat-header-cell>
@@ -37,8 +37,10 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>شناسه</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
             </ng-container>
-
         </mat-table>
+        <div *ngIf="isLoading" class="loadingIcon">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
     </div>
     <button class="btn btn-danger" type="button" id="add-btn" (click)="addHandler()">افزودن</button>
 </div>

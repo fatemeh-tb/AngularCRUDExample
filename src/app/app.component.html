@@ -1,19 +1,11 @@
-<div class="container">
-    <h2 class="d-flex justify-content-center header">پـورتـال مـدیـریـت کـارمـنـدان</h2>
+<app-header></app-header>
 
-    <nav class="navbar navbar-expand-sm bg-light navbark-dark" style="margin-bottom: 50px; direction: rtl;">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <button routerLink="employee" routerLinkActive="active" class="m-1 btn btn-light btn-outline-primary">
-                    لیست کارمندان
-                </button>
-                <button routerLink="home" routerLinkActive="active" class="m-1 btn btn-light btn-outline-primary float-end">
-                    صفحه اصلی
-                </button>
-            </li>
-        </ul>
-    </nav>
-    <router-outlet></router-outlet>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
 
 <footer>

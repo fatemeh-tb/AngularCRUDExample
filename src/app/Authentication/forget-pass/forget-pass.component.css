@@ -1,0 +1,23 @@
+
+
+mat-form-field {
+    margin: 10px 45px;
+    width: 70%;
+    padding: 0;
+    background-color: #fff;
+}
+
+h1 {
+    font-family: vazir;
+}
+
+
+label {
+    font-size: 16px;
+    margin: 40px auto 20px auto;
+}
+
+input {
+    width: 450px;
+    height: 45px;
+}

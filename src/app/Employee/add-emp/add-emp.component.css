@@ -8,8 +8,24 @@
     margin-left: 30px;
 }
 
-.right-align-text {
+.header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    background-color: #543D7c;
+}
+
+h3 {
     text-align: right;
+    font-family: 'vazir', 'arial', sans-serif;
+    color: #fff;
+    padding: 24px 24px 0 0;
+    margin: 0;
+
+}
+
+.add-items {
+    padding: 24px;
 }
 
 mat-toolbar {
@@ -20,35 +36,25 @@ mat-toolbar {
     padding-bottom: 30px;
 }
 
-@media screen and (max-width: 1400px) {
+mat-form-field {
+    width: 250px;
+    margin: 0 0 25px 20px;
+}
+
+@media screen and (max-width: 1199.98px) {
     mat-form-field {
-        width: 190px;
+        width: 230px;
     }
 }
 
-@media screen and (max-width: 1200px) {
-    mat-form-field {
-        width: 155px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    mat-form-field {
-        width: 127px;
-    }
-}
-
-@media screen and (max-width: 825px) {
-    mat-form-field {
-        width: 120px;
-    }
-}
-
-@media screen and (max-width: 760px) {
-    td {
-        display: block;
-    }
+@media screen and (max-width: 991.98px) {
     mat-form-field {
         width: 180px;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    td {
+        display: block;
     }
 }

@@ -1,43 +1,44 @@
-<div>
-  <h3 style="text-align: right; font-family: 'vazir', 'arial', sans-serif;"> افزودن مشخصات</h3>
+<div class="header">
+  <h3> ویرایش مشخصات</h3>
 </div>
 
 <div class="add-items" dir=rtl>
   <form #form="ngForm" (submit)="onSubmit(form)">
-
-    <mat-form-field appearance="outline" style="float: right;">
-      <mat-label> شناسه </mat-label>
-      <input matInput type="number" name="id" #id="ngModel" class="right-align-text"
-        [(ngModel)]="employeeService.formData.id" required>
-    </mat-form-field>
-
-    <table style="float: right;">
+    <div>
+      <mat-form-field class="last" appearance="outline">
+        <mat-label> شناسه </mat-label>
+        <input matInput type="text" name="id" #id="ngModel"
+          [(ngModel)]="employeeService.formData.id" required readonly>
+      </mat-form-field>
+    </div>
+    <table>
       <tr>
         <td>
-          <mat-form-field appearance="outline">
-            <mat-label class="right-align-text"> نام </mat-label>
-            <input matInput type="text" name="firstName" #firstName="ngModel" class="right-align-text"
+          <mat-form-field class="last" appearance="outline">
+            <mat-label> نام </mat-label>
+            <input matInput type="text" name="firstName" #firstName="ngModel"
               [(ngModel)]="employeeService.formData.firstName" required>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field appearance="outline">
             <mat-label> نام خانوادگی</mat-label>
-            <input matInput type="text" class="right-align-text" name="lastName" #lastName="ngModel"
+            <input matInput type="text" name="lastName" #lastName="ngModel"
               [(ngModel)]="employeeService.formData.lastName" required>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field appearance="outline">
-            <mat-label>تاریخ تولد </mat-label>
-            <input matInput [matDatepicker]="picker6" name="birthTime" #birthTime="ngModel"
-              [(ngModel)]="employeeService.formData.birthTime" required>
-            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-            <mat-datepicker #picker6></mat-datepicker>
           </mat-form-field>
         </td>
       </tr>
     </table>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>تاریخ تولد </mat-label>
+        <input matInput [matDatepicker]="picker6" name="birthTime" #birthTime="ngModel"
+          [(ngModel)]="employeeService.formData.birthTime" required>
+        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+        <mat-datepicker #picker6></mat-datepicker>
+      </mat-form-field>
+    </div>
 
     <div>
       <mat-form-field>
@@ -50,7 +51,7 @@
       </mat-form-field>
     </div>
 
-    <div style="float: left;">
+    <div class="text-center">
       <button class="btn btn-success submit-btn" mat-raised-button type="submit"
         [disabled]="form.invalid">اعمال</button>
       <button class="close-btn" mat-raised-button color="warn" type="button" (click)="onClose()"> لغو </button>

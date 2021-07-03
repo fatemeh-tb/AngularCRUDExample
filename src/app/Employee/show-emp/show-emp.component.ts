@@ -15,6 +15,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./show-emp.component.css']
 })
 export class ShowEmpComponent implements OnInit {
+  isLoading = false;
 
   displayedColumns: string[] = ['Options', 'birthTime',
     'lastName', 'firstName', 'id',]
@@ -36,7 +37,9 @@ export class ShowEmpComponent implements OnInit {
   }
 
   getData() {
+    this.isLoading = true;
     this.employeeService.getEmpList().subscribe(data => {
+      this.isLoading = false;
       this.listData = new MatTableDataSource(data);
       this.listData.sort = this.sort;
     })
@@ -47,8 +50,7 @@ export class ShowEmpComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
-
+    dialogConfig.panelClass = "full-width-dialog"
     this.dialog.open(AddEmpComponent, dialogConfig).afterClosed().subscribe(
       () => this.getData()
     )
@@ -61,7 +63,7 @@ export class ShowEmpComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
+    dialogConfig.panelClass = "full-width-dialog"
     this.dialog.open(EditEmpComponent, dialogConfig).afterClosed().subscribe(
       () => this.getData()
     )

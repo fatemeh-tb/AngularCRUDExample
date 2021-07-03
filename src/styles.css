@@ -7,6 +7,7 @@
 
 * {
   font-family: 'vazir', 'arial', sans-serif;
+  /* background-color: #f6f9fb; */
 }
 
 html {
@@ -16,4 +17,25 @@ html {
 
 body {
   margin: 0 0 100px;
+  background-color: #f6f9fb;
+}
+
+mat-spinner {
+  zoom: 0.6;
+  margin: auto;
+  width: 50%;
+}
+
+.full-width-dialog .mat-dialog-container {
+  max-width: 600px !important;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+@media screen and (max-width: 991.98px) {
+  .full-width-dialog .mat-dialog-container {
+    max-width: 800px !important;
+    margin: 0 auto;
+  }
 }

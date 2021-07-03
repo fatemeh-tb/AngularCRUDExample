@@ -1,0 +1,37 @@
+<div style="margin-bottom: 200px;" class="row mt-5" dir="rtl">
+    <div class="col-md-6 m-auto">
+        <div>
+            <h1 class="text-center mb-3"> ایجاد حساب کاربری</h1>
+            <div *ngIf="isLoading" style="text-align: center;">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+            <form style="margin: 0 auto; width: 70%;" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)"
+                *ngIf="!isLoading">
+                <div class="form-group">
+                    <label class="label" for="name">نام و نام خانوادگی</label>
+                    <input type="text" name="name" class="form-control" ngModel
+                        placeholder="نام و نام خانوادگی خود را وارد کنید" width="450px" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="email">پست الکترونیک</label>
+                    <input type="email" name="email" class="form-control" ngModel
+                        placeholder="پست الکترونیکی خود را وارد نمایید" width="450px" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="password">کلمه عبور</label>
+                    <input type="password" name="password" class="form-control" ngModel
+                        placeholder="کلمه عبور را وارد نمایید" required />
+                </div>
+                <div style="margin: 40px 0 20px 0;" class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">ثبت نام</button>
+                </div>
+                <div class="alert alert-danger errorMsg" *ngIf="error">
+                    <p>{{ error }}</p>
+                </div>
+            </form>
+            <p class="lead mt-4 text-center">
+                <a class="forget-password" href="/login">قبلا ثبت نام کرده اید؟</a>
+            </p>
+        </div>
+    </div>
+</div>
