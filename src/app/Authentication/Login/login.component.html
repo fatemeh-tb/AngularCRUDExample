@@ -8,17 +8,22 @@
             </div>
 
             <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
-                <div class="form-group">
-                    <label for="email">پست الکترونیک</label>
-                    <input type="email" id="email" name="email" class="form-control" ngModel
-                        placeholder="پست الکترونیکی خود را وارد نمایید" width="450px" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">کلمه عبور</label>
-                    <input type="password" id="password" name="password" class="form-control" ngModel
-                        placeholder="کلمه عبور خود را وارد نمایید" required />
-                </div>
-                <div style="margin: 40px 0 20px 0;" class="d-grid gap-2">
+                <p>
+                    <label>پست الکترونیک</label>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <input matInput type="email" id="email" name="email" ngModel
+                            placeholder="پست الکترونیکی خود را وارد نمایید" required>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <label>کلمه عبور </label>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <input matInput type="password" id="password" name="password" ngModel
+                            placeholder="کلمه عبور خود را وارد نمایید" required>
+                    </mat-form-field>
+                </p>
+
+                <div class="submit-btn d-grid gap-2">
                     <button type="submit" class="btn btn-primary">ورود</button>
                 </div>
                 <div class="alert alert-danger errorMsg" *ngIf="error">

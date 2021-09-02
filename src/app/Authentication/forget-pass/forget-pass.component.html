@@ -1,14 +1,16 @@
-<div style="margin-bottom: 200px;" class="row mt-5" dir="rtl">
+<div  class="row mt-5" dir="rtl">
     <div class="col-md-6 m-auto">
         <div>
             <h1 class="text-center mb-3"> فراموشی کلمه عبور</h1>
-            <form style="margin: 0 auto; width: 70%;">
-                <div class="form-group">
-                    <label for="email">ایمیل</label>
-                    <input type="email" id="email" name="email" class="form-control"
-                        placeholder="ایمیل خود را وارد نمایید" width="450px" />
-                </div>
-                <div style="margin-top: 40px;" class="d-grid gap-2">
+            <form>
+                <p>
+                    <label>پست الکترونیکی </label>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <input matInput type="email" id="email" name="email" ngModel
+                            placeholder="پست الکترونیکی خود را وارد نمایید" required>
+                    </mat-form-field>
+                </p>
+                <div class="submit-btn d-grid gap-2">
                     <button type="submit" class="btn btn-primary">ارسال</button>
                 </div>
             </form>

@@ -22,11 +22,10 @@ export class RegisterComponent {
 
     const email = form.value.email;
     const password = form.value.password;
-    const name = form.value.name;
 
     this.isLoading = true;
 
-    this.authService.signUp(name, email, password).subscribe(
+    this.authService.signUp(email, password).subscribe(
       resData => {
         console.log(resData);
         this.router.navigate(['./employee']);

@@ -1,33 +1,45 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
-import { AuthService } from "../Authentication/auth.service";
+import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable, Subscription } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from '../Authentication/auth.service';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
+export class HeaderComponent {
+  isAuth = false;
+  private userSub: Subscription
+  navbarOpen = false;
 
+  constructor(private breakpointObserver: BreakpointObserver, public authService: AuthService) { }
 
-export class HeaderComponent implements OnInit, OnDestroy {
-    private userSub: Subscription
-    isAuth = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
-    constructor(public authService: AuthService) { }
+  ngOnInit() {
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuth = !!user;
+      console.log(!user);
+      console.log(!!user);
+    });
+  }
 
-    ngOnInit() {
-        this.userSub = this.authService.user.subscribe(user => {
-            this.isAuth = !!user;
-            console.log(!user);
-            console.log(!!user);
-        });
-    }
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 
-    onLogout() {
-        this.authService.logOut();
-    }
+  onLogout() {
+    this.authService.logOut();
+  }
 
-    ngOnDestroy() {
-        this.userSub.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
 }

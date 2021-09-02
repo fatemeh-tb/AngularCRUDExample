@@ -3,8 +3,9 @@
     text-align: center;
     padding: 15px 40px 30px 40px;
     margin: 50px 0;
-    font-size: 17px;
+    font-size: 1em;
     line-height: 32px;
+    box-sizing: border-box;
 }
 
 h2 {

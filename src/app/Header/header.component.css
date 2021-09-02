@@ -1,53 +1,114 @@
-#top-bar {
-    padding: 10px 0;
-    background-color: #fff;
-    border-bottom: 1px solid #e1e1e1;
+.sidenav-container {
+  height: 100%;
 }
 
-.logo {
-    direction: rtl;
-    background-color: #fff;
+.sidenav {
+  width: 200px;
 }
 
-#nav-bar {
-    background-color: #fff;
-    padding-bottom: 20px;
+.sidenav .mat-toolbar {
+  background: inherit;
 }
 
-.top-bar-inner {
-    display: flex;
-    justify-content: space-between;
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.left-side {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+.mat-toolbar {
+  background-color: #fff;
 }
 
-.nav-btn:hover {
-    color: #0d6efd;
+.hidden {
+  display: none;
+}
+
+.toolbar-row {
+  border-bottom: 1px solid #e1e1e1;
 }
 
 .nav-btn {
-    display: inline;
-    text-decoration: none;
-    float: right;
-    height: 40px;
+  display: inline;
+  text-decoration: none;
+  float: right;
+  height: 40px;
+}
+
+.nav-btn:hover {
+  color: #0d6efd;
+}
+
+.top-bar-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-side {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.search-form {
+  width: 300px;
+  position: relative;
+}
+
+.search-btn {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.search-inp {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  width: 100%;
+  height: 40px;
+  font-size: 0.75rem;
+  color: #555;
+  background-color: #f0f0f1;
+}
+
+.serach-icon {
+  font-size: 1.7rem;
+  color: #777;
+}
+
+.person-icon {
+  font-size: 2.5rem;
+  color: #777;
+}
+
+.login {
+  margin-right: 30px;
+}
+
+.login-btn {
+  font-size: 0.85rem;
 }
 
 .dropdown-menu {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .dropdown-item {
-    text-align: right;
-    height: 40px;
-    border-bottom: 1px solid #fafafa;
+  text-align: right;
+  height: 40px;
+  border-bottom: 1px solid #fafafa;
 }
 
 .dropdown-item:hover {
-    color: #0d6efd;
-    cursor: pointer;
-    background-color: inherit;
+  color: #0d6efd;
+  cursor: pointer;
+  background-color: inherit;
 }

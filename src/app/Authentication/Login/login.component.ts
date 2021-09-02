@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Injectable, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 
@@ -33,7 +32,7 @@ export class LoginComponent {
     this.authService.signIn(email, password).subscribe(
       resData => {
         console.log(resData);
-        this.router.navigate(['./employee']);
+        this.router.navigate(['./home']);
         this.isLoading = false;
       },
       errorMessage => {

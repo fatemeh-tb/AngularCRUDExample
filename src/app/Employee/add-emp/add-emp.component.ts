@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,7 +8,8 @@ import { EmployeeService } from 'src/app/Services/employee.service';
 @Component({
   selector: 'app-add-emp',
   templateUrl: './add-emp.component.html',
-  styleUrls: ['./add-emp.component.css']
+  styleUrls: ['./add-emp.component.css'],
+
 })
 
 export class AddEmpComponent implements OnInit {

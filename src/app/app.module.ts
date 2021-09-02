@@ -31,15 +31,19 @@ import { EmployeeComponent } from './Employee/employee.component'
 import { AddEmpComponent } from './Employee/add-emp/add-emp.component';
 import { EditEmpComponent } from './Employee/edit-emp/edit-emp.component';
 import { ShowEmpComponent } from './Employee/show-emp/show-emp.component';
-import { EmployeeService } from './Services/employee.service';
+
 
 import { HeaderComponent } from './Header/header.component';
-import { MainComponent } from './main/mainContent/main.component';
+import { MainContentComponent } from './main/mainContent/mainContent.component';
 import { NotFoundComponent } from './main/notFound/notFound.component';
 import { LoginComponent } from './Authentication/Login/login.component';
 import { RegisterComponent } from './Authentication/Register/register.component';
 import { ForgetPassComponent } from './Authentication/forget-pass/forget-pass.component';
 import { LoadingSpinnerComponent } from './shared/loaing-spinner/loading-spinner.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { ProfileComponent } from './main/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -49,11 +53,12 @@ import { LoadingSpinnerComponent } from './shared/loaing-spinner/loading-spinner
     EditEmpComponent,
     ShowEmpComponent,
     HeaderComponent,
-    MainComponent,
+    MainContentComponent,
     NotFoundComponent,
     MomentJalaali,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
     ForgetPassComponent,
     LoadingSpinnerComponent,
   ],
@@ -79,8 +84,11 @@ import { LoadingSpinnerComponent } from './shared/loaing-spinner/loading-spinner
     MatToolbarModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
   ],
-  providers: [EmployeeService, MomentJalaali,
+  providers: [ MomentJalaali,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }],
   bootstrap: [AppComponent],
